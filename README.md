@@ -1,131 +1,154 @@
-Library Management System
+# Library Management System
 
-A simple Python-based console application for managing books in a library. The system allows users to add, view, search, issue, and return books through an interactive menu.
+## 1. Project Title
 
-Features
+**Library Management System (CLI)**
 
-Add new books with Book ID, title, and author.
+## 2. Project Overview
 
-View all books and their availability status.
+The Library Management System is a command-line application developed in Python for managing books in a library.
 
-Search for a book using its Book ID.
+The system allows users to add books, view all available books, search for a specific book, issue books, and return books. Book data is managed through a storage layer so that library information can be persisted between program runs.
 
-Issue an available book.
+The application follows a layered structure with separate components for:
 
-Return an issued book.
+- **CLI / Presentation Layer** – Handles user interaction and menu display.
+- **Library Service Layer** – Handles library operations and business logic.
+- **Storage Layer** – Handles saving and retrieving book data.
 
-Exit the application safely.
+## 3. Features
 
-Uses Python lists and dictionaries for data storage.
+The system provides the following features:
 
-Technologies Used
+### Add Book
+- Add a new book using a unique Book ID.
+- Enter the book title and author name.
+- Validates that required fields are not empty.
 
-Python 3
+### View Books
+- Display all books stored in the library.
+- Shows:
+  - Book ID
+  - Book Title
+  - Author
+  - Current Status
 
-Python built-in functions and data structures
+### Search Book
+- Search for a book using its Book ID.
+- Displays the book's details if it exists.
+- Displays an appropriate message if the book is not found.
 
-No external libraries or dependencies are required.
+### Issue Book
+- Issue a book using its Book ID.
+- Updates the book's availability status.
 
-Project Structure
-Library-Management-System/
-│
-├── library.py
-└── README.md
+### Return Book
+- Return a previously issued book using its Book ID.
+- Updates the book's availability status.
 
-Requirements
+### Exit
+- Safely exit the application through the menu.
 
-Before running the project, make sure you have:
+## 4. Technologies and Tools Used
 
-Python 3.7 or later installed.
+| Technology / Tool | Purpose |
+|---|---|
+| Python 3 | Main programming language |
+| Command Line Interface (CLI) | User interaction |
+| File Storage | Persistent storage of library data |
+| Python Modules | Organizing application components |
 
-A terminal/command prompt.
+### Project Modules
 
-A text editor or Python IDE such as VS Code, PyCharm, or IDLE.
+The application uses the following Python modules:
 
-No database, third-party package, or internet connection is required.
+- `config.py` – Stores application configuration such as the data file location.
+- `storage.py` – Provides the `StorageManager` for data storage and retrieval.
+- `library.py` – Provides the `LibraryService` containing library business logic.
+- `main.py` – Provides the CLI interface and application entry point.
 
-Step 1: Install Python
+## 5. Installation and Setup
 
-Download and install Python 3 from the official Python website.
+### Prerequisites
 
-After installation, verify that Python is available by opening a terminal or command prompt and running:
+Make sure Python 3 is installed on your computer.
 
+Check the Python version using:
+
+```bash
 python --version
+```
 
+or, depending on your system:
 
-On some systems, use:
-
+```bash
 python3 --version
+```
 
+### Step 1: Clone or Download the Project
 
-You should see a Python 3 version number, for example:
+Download the project files or clone the project repository.
 
-Python 3.x.x
+Example:
 
-Step 2: Get the Project
-
-Download or clone this project to your computer.
-
-If you are using Git:
-
+```bash
 git clone <repository-url>
-
+```
 
 Then move into the project directory:
 
-cd Library-Management-System
+```bash
+cd <project-directory>
+```
 
+### Step 2: Check the Project Files
 
-If you downloaded the project as a ZIP file, extract it and open the extracted project folder in your terminal or IDE.
+Make sure the project contains the required Python modules, for example:
 
-Step 3: Environment Setup
+```text
+project/
+│
+├── main.py
+├── config.py
+├── storage.py
+├── library.py
+├── README.md
+└── ...
+```
 
-This project does not require a virtual environment because it uses only Python's built-in features.
+### Step 3: Configure the Data File
 
-However, you can optionally create one.
+The application uses:
 
-Windows
-python -m venv venv
-venv\Scripts\activate
+```python
+config.DATA_FILE
+```
 
-macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
+to determine where library data is stored.
 
-Step 4: Install Dependencies
+Make sure `config.py` defines the required `DATA_FILE` path.
 
-There are no external dependencies required for this project.
+### Step 4: Run the Application
 
-Therefore, no pip install command is necessary.
+Run the main Python file:
 
-If the project is extended in the future and a requirements.txt file is added, dependencies can be installed with:
+```bash
+python main.py
+```
 
-pip install -r requirements.txt
+or:
 
-Step 5: Configuration
+```bash
+python3 main.py
+```
 
-No configuration file, database, API key, environment variable, or external service is required.
+The application will display the Library Management System menu.
 
-The application stores book information temporarily in a Python list while the program is running.
+## 6. How to Use the Application
 
-Important: Book data is stored in memory and will be lost when the program is closed.
+After starting the program, the following menu is displayed:
 
-Step 6: Run the Application
-
-Make sure you are inside the project directory.
-
-Run the program using:
-
-python library.py
-
-
-On macOS/Linux, you may need:
-
-python3 library.py
-
-
-The application will display the main menu:
-
+```text
 ===== LIBRARY MANAGEMENT SYSTEM =====
 1. Add Book
 2. View Books
@@ -133,131 +156,189 @@ The application will display the main menu:
 4. Issue Book
 5. Return Book
 6. Exit
+Enter your choice (1-6):
+```
 
-Enter your choice:
+Enter the corresponding number to perform an operation.
 
-Step 7: Using the Application
-1. Add Book
+### Adding a Book
 
-Select option 1.
+Select:
 
-Enter:
+```text
+1
+```
 
+Then enter:
+
+```text
 Book ID
-
 Book Title
-
 Author Name
+```
 
-The book will be added with an Available status.
+The system validates that the Book ID, title, and author are not empty.
 
-2. View Books
+### Viewing Books
 
-Select option 2 to display all books stored in the system.
+Select:
 
-Each book displays:
+```text
+2
+```
 
-ID
+The system displays all books and their current status.
 
-Title
+### Searching for a Book
 
-Author
+Select:
 
-Status
+```text
+3
+```
 
-3. Search Book
+Enter the Book ID to search for the book.
 
-Select option 3 and enter the Book ID.
+### Issuing a Book
 
-If the book exists, its details and current status will be displayed.
+Select:
 
-4. Issue Book
+```text
+4
+```
 
-Select option 4 and enter the Book ID.
+Enter the Book ID of the book that should be issued.
 
-If the book is available, its status changes to Issued.
+### Returning a Book
 
-If it has already been issued, the system displays an appropriate message.
+Select:
 
-5. Return Book
+```text
+5
+```
 
-Select option 5 and enter the Book ID.
+Enter the Book ID of the book that should be returned.
 
-If the book is currently issued, its status changes back to Available.
+### Exiting
 
-6. Exit
+Select:
 
-Select option 6 to close the application.
+```text
+6
+```
 
-Example
-===== LIBRARY MANAGEMENT SYSTEM =====
-1. Add Book
-2. View Books
-3. Search Book
-4. Issue Book
-5. Return Book
-6. Exit
+The application will display:
 
-Enter your choice: 1
+```text
+Thank you for using the Library Management System!
+```
 
-Enter Book ID: B101
+and terminate.
+
+## 7. Testing Instructions
+
+Testing should verify that each major feature works correctly and that invalid inputs are handled properly.
+
+### Test 1: Add a Valid Book
+
+1. Run the application.
+2. Select option `1`.
+3. Enter a valid Book ID.
+4. Enter a book title.
+5. Enter an author name.
+6. Verify that the book is successfully added.
+
+Example:
+
+```text
+Enter Book ID: B001
 Enter Book Title: Python Programming
 Enter Author Name: John Smith
+```
 
-Book added successfully!
+### Test 2: Add a Book with Empty Book ID
 
+1. Select option `1`.
+2. Leave the Book ID empty.
+3. Verify that the system displays:
 
-You can then select View Books to see:
+```text
+Error: Book ID cannot be empty.
+```
 
---- Library Books ---
-ID: B101
-Title: Python Programming
-Author: John Smith
-Status: Available
---------------------
+### Test 3: Add a Book with Empty Title or Author
 
-Data Storage
+1. Select option `1`.
+2. Enter a valid Book ID.
+3. Leave the title or author empty.
+4. Verify that the system displays:
 
-The application uses a Python list called books to store book records.
+```text
+Error: Title and Author cannot be empty.
+```
 
-Each book is represented as a dictionary containing:
+### Test 4: View Books
 
-{
-    "id": "B101",
-    "title": "Python Programming",
-    "author": "John Smith",
-    "available": True
-}
+1. Add one or more books.
+2. Select option `2`.
+3. Verify that all stored books are displayed with their ID, title, author, and status.
 
+### Test 5: Search for an Existing Book
 
-The available value is:
+1. Select option `3`.
+2. Enter the ID of an existing book.
+3. Verify that the correct book details are displayed.
 
-True when the book is available.
+### Test 6: Search for a Non-Existing Book
 
-False when the book is issued.
+1. Select option `3`.
+2. Enter an ID that does not exist.
+3. Verify that the system displays:
 
-Troubleshooting
-Python command not found
+```text
+Book not found.
+```
 
-If the terminal reports that Python is not recognized, install Python and make sure it is added to your system's PATH.
+### Test 7: Issue a Book
 
-File not found
+1. Select option `4`.
+2. Enter the ID of an available book.
+3. Verify that the book's status changes to the issued/unavailable state.
 
-Make sure you are running the command from the directory containing library.py.
+### Test 8: Return a Book
 
-You can check the files in the current directory with:
+1. Select option `5`.
+2. Enter the ID of an issued book.
+3. Verify that the book's status changes back to the available state.
 
-dir
+### Test 9: Invalid Menu Choice
 
+1. Enter an invalid menu option such as `7` or `abc`.
+2. Verify that the system displays:
 
-on Windows, or:
+```text
+Invalid choice. Please try again.
+```
 
-ls
+### Test 10: Exit the Application
 
+1. Select option `6`.
+2. Verify that the application displays the exit message and terminates correctly.
 
-on macOS/Linux.
+## 8. Expected Result
 
-No books appear after restarting
+After successful testing, the application should:
 
-This is expected. The current version stores data only in memory and does not use a database or permanent file storage.
+- Allow valid books to be added.
+- Prevent empty required fields.
+- Display stored books correctly.
+- Search books using their IDs.
+- Allow available books to be issued.
+- Allow issued books to be returned.
+- Handle invalid menu choices.
+- Exit without errors.
+- Preserve library data according to the configured storage mechanism.
 
+## 9. Conclusion
+
+The Library Management System provides a simple command-line interface for performing common library operations. Its separation into presentation, service, and storage components makes the application easier to maintain, test, and extend in the future.
